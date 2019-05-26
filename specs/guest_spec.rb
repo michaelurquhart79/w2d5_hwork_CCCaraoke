@@ -5,7 +5,8 @@ require_relative('../guest')
 class TestGuest < Minitest::Test
 
   def setup
-    @guest1 = Guest.new("Mike", 1000)
+    @guest1 = Guest.new("Mike", 1000, "Get Free")
+    @guest2 = Guest.new("Dave", 100, "Hey Hey My My")
   end
 
   def test_guest_has_a_name
@@ -29,6 +30,10 @@ class TestGuest < Minitest::Test
   def test_can_afford__false
     result = @guest1.can_afford?(10000)
     refute(result)
+  end
+
+  def test_has_fav_song
+    assert_equal("Get Free", @guest1.fav_song)
   end
 
 

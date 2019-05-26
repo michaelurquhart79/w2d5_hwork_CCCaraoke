@@ -37,5 +37,14 @@ class Room
     @guest_list.delete(guest)
   end
 
+  def fav_song_in_list(guest)
+    @song_list.each do |song|
+      if song.name == guest.fav_song
+        return "#{guest.name} says: Whoo!"
+      end
+    end
+    return "#{guest.name} says: Boo!"
+  end
+
 
 end

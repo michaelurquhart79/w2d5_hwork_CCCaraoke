@@ -11,12 +11,15 @@ class TestRoom < Minitest::Test
 
   def setup
     @room1 = Room.new("Jimi Hendrix Room", 3, 100)
-    @guest1 = Guest.new("Mike",100)
-    @guest2 = Guest.new("Dave", 50)
-    @guest3 = Guest.new("Bullhelm",10)
-    @guest4 = Guest.new("Shakki", 10)
-    @guest5 = Guest.new("Scott", 5)
+    @guest1 = Guest.new("Mike",100, "Get Free")
+    @guest2 = Guest.new("Dave", 50, "Hey Hey My My")
+    @guest3 = Guest.new("Bullhelm",10, "Wannabe")
+    @guest4 = Guest.new("Shakki", 10, "Chop Suey")
+    @guest5 = Guest.new("Scott", 5, "Limmasol")
     @song1 = Song.new("Hey Jude")
+    @song2 = Song.new("Get Free")
+    @song3 = Song.new("Wannabe")
+
   end
 
   def test_room_has_name
@@ -95,4 +98,21 @@ class TestRoom < Minitest::Test
   def test_room_has_till
     assert_equal(100.0, @room1.till)
   end
+
+  def test_fav_song_in_list__in_list
+    @room1.add_song(@song1)
+    @room1.add_song(@song2)
+    @room1.add_song(@song3)
+    result = @room1.fav_song_in_list(@guest1)
+    assert_equal("Mike says: Whoo!", result)
+  end
+
+  def test_fav_song_in_list__not_in_list
+    @room1.add_song(@song1)
+    @room1.add_song(@song2)
+    @room1.add_song(@song3)
+    result = @room1.fav_song_in_list(@guest2)
+    assert_equal("Dave says: Boo!", result)
+  end
+
 end
