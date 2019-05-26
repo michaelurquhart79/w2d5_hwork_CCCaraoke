@@ -36,5 +36,14 @@ class TestGuest < Minitest::Test
     assert_equal("Get Free", @guest1.fav_song)
   end
 
+  def test_has_initial_spend_tracker
+    assert_equal({}, @guest1.spend_tracker)
+  end
+
+  def test_add_to_spend_tracker
+    @guest1.add_to_spend_tracker("test item", 6)
+    assert_equal(6.0, @guest1.spend_tracker["test item"])
+  end
+
 
 end
